@@ -1,0 +1,75 @@
+Validation form
+<hr>
+<div  novalidate>
+  <form [formGroup]="userDetails" (ngSubmit)="register()">
+
+    <div class="col-md-3">
+      <label>Name</label>
+      <input type="text" class="form-control" formControlName="fname" required>
+      <div *ngIf="userDetails.controls['fname'].hasError('minlength')" class="alert alert-danger">
+        Min 3 chr
+      </div>
+      <div *ngIf="userDetails.controls['fname'].hasError('maxlength')" class="alert alert-danger">
+        Max 10 chr
+      </div>
+      <div *ngIf="userDetails.controls['fname'].hasError('required')" class="alert alert-danger">
+        Please enter FirstName
+      </div>
+    </div>
+
+
+    <div class="col-md-3">
+      <label>Phone No</label>
+      <input type="number" class="form-control" formControlName="mobile" required>
+      <div *ngIf="userDetails.controls['mobile'].hasError('required')" class="alert alert-danger">
+        please enter mobile no
+      </div>
+      <div *ngIf="userDetails.controls['mobile'].hasError('minlength')" class="alert alert-danger">
+        enter10digit
+      </div>
+      <div *ngIf="userDetails.controls['mobile'].hasError('maxlength')" class="alert alert-danger">
+        should not be greater than 10 digit
+      </div>
+
+    </div>
+
+    <div class="col-md-3">
+      <label>Email</label>
+      <input type="email" class="form-control" formControlName="email" required>
+      <div *ngIf="userDetails.controls['email'].hasError('required')" class="alert alert-danger">
+        please enter Email
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" required>
+      <div *ngIf="userDetails.controls['password'].hasError('required')" class="alert alert-danger">
+        please enter password
+      </div>
+      <div *ngIf="userDetails.controls['password'].hasError('minlength')" class="alert alert-danger">
+        Minlength 6 chars
+      </div>
+
+    </div>
+
+    <div class="col-md-3">
+      <label>Gender</label>
+      <input type="text" class="form-control" formControlName="gender" required>
+    </div>
+
+    <div class="col-md-3">
+      <label>Nationality</label>
+      <select class="custom-select"  formControlName="nationality">
+        <option value="" disabled>Choose your city</option>
+        <option *ngFor="let x of nationality" [ngValue]="x">{{x}}</option>
+      </select>
+    </div>
+<br>
+    <div class="col-md-3">
+      <input type="submit" class="btn btn-success" >
+
+    </div>
+
+  </form>
+</div>
